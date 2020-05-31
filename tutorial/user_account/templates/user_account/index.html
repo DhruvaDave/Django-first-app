@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}View Prifle{% endblock %}
+
+{% block body %}
+    <div class="container"> 
+    <h1><b>{{ls.username}}'s </b>Profile</h1>
+    <br/>
+        
+            {% if ls.first_name %} <p> FirstName :  {{ls.first_name}}</p>{% endif %}
+            {% if ls.last_name %} <p> LastName :  {{ls.last_name}}</p>{% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}
+        <title>Base</title>
+        {% endblock %}
+    </head>
+    <style>
+      .flex-list {
+            position: relative;
+            margin: 1em;
+            overflow: hidden;
+        }
+        .flex-list ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-left: -1px;
+        }
+        .flex-list li {
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: .25em 0;
+            padding: 0 1em;
+            text-align: center;
+            border-left: 1px solid #ccc;
+            /* background-color: #fff; */
+        }
+    </style>
+    <body>
+        <br>
+        <div class="container">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="/">Social Network</a> -->
+                <div class="flex-list">
+                  <ul>
+  
+                    <li>
+  
+                      {% if user.is_superuser %}
+                        <a class="navbar-brand" href="/admin/user_account/userprofile/">All Profile</a>
+                      {% else %}
+                        <a class="navbar-brand" href="/user_account/all_profile">All Profile</a>
+                      {% endif %}
+  
+                    </li>
+                    <li><a class="navbar-brand" href="/user_account/all/msg">All Messages</a></li>
+                    {% if user.is_superuser %}
+                    <li>
+                      <a class="navbar-brand" href="/admin/auth/user/">All Users</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                      {% if user.is_authenticated %}
+                      <a class="navbar-brand" href="/user_account/logout">logout</a>
+                      
+                      {% else %}
+                      
+                      <a class="navbar-brand" href="/user_account/login">Login</a>
+                      {% endif %}
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                      <a class="navbar-brand" href="/user_account/profile/edit">Edit Profile</a>
+                    </li>
+                    {% endif %}
+                    <li><a class="navbar-brand" href="/user_account/register">Register</a></li>
+                   
+                  </ul>
+
+                </div>
+
+                
+                
+                
+              </div>
+              
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul>
+                  
+                  <!-- {% if user in user.company.leave_approvers.all %} -->
+                    <li role="separator" class="divider">HEllo</li>
+                    <li><a href="{% url 'user_account:all_profile' %}">All Profile</a></li>
+                    <!-- <li><a href="{% url 'user_account:all_profile' %}">All Profile</a></li> -->
+                  <!-- {% endif %} -->
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </div>
+        {% block body %}
+            <h1>Base</h1>
+        {% endblock %}
+       
+    </body>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
