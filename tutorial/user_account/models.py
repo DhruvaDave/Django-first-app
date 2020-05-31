@@ -18,7 +18,6 @@ class UserProfile(models.Model):
         return self.user.username
 
 def create_profile(sender, **kwargs):
-    print("----kwargs---create_profile---",kwargs)
     if kwargs['created']:
         user_profile = UserProfile.objects.create(user=kwargs['instance'])
 
@@ -35,24 +34,3 @@ class Message(models.Model):
         null=True
     )
     
-    # def save(self, *args, **kwargs):
-    #     # if not self.slug:
-    #     #     self.slug = slugify(self.title)
-    #     super(Message, self).save(*args, **kwargs)
-
-
-
-
-# @receiver(post_save, sender=User)
-# def user_post_save(sender, **kwargs):
-#     """
-#     Create a Profile instance for all newly created User instances. We only
-#     run on user creation to avoid having to check for existence on each call
-#     to User.save.
-#     """
-#     user, created = kwargs["instance"], kwargs["created"]
-#     if created and user.username != settings.ANONYMOUS_USER_NAME:
-        
-#         profile = Message.objects.create(pk=user.pk, user=user, creator=user)
-#         assign_perm("change_user", user, user)
-#         assign_perm("change_profile", user, profile)

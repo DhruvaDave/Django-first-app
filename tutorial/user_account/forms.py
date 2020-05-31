@@ -33,8 +33,6 @@ class RegistrationForm(UserCreationForm):
 
 
 class EditProfileForm(UserChangeForm):
-    template_name='/something/else'
-
     class Meta:
         model = User
         fields = (
@@ -48,25 +46,16 @@ class EditProfileForm(UserChangeForm):
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        # fields = ['user_messsage', 'user_id']
         exclude = []
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user','')
-        print("--------------init------------",user)
         super(MessageForm, self).__init__(*args, **kwargs)
         self.fields['user_id']=forms.ModelChoiceField(queryset=User.objects.filter(username=user))
         self.fields['user_messsage']=forms.CharField(max_length=15)
-        print("-----------self.fields---------",self.fields)
-
-
-
-
 
 class MsgEditForm(forms.Form):
-    # template_name='/something/else'
     user_messsage = forms.CharField(max_length=300)
-    
 
     class Meta:
         model = Message

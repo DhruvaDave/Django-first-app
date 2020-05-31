@@ -13,8 +13,4 @@ urlpatterns = [
     path('all/msg',views.all_msg,name="all_msg"),
     path('all_profile/',views.all_profile,name="all_profile"),
     path('all_profile/<int:id>/', views.index_profile, name='index_profile'),
-    # # ex: /polls/5/results/
-    # path('<int:user_id>/results/', views.results, name='results'),
-    # # # ex: /polls/5/vote/
-    # path('<int:user_id>/vote/', views.vote, name='vote'),
 ]
